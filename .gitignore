@@ -31,3 +31,15 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Compile ###
+dist/
+artifacts/
+build/
+
+### Dependencies ###
+node_modules/
+
+# SO
+.DS_Store
+Thumbs.db
