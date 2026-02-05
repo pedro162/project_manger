@@ -43,3 +43,12 @@ node_modules/
 # SO
 .DS_Store
 Thumbs.db
+
+### Logs ###
+*.db
+*.db-journal
+*.sqlite
+*.sqlite-wal
+db/
+
+.mvn/

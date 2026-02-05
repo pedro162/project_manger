@@ -1,98 +1,132 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+# Project Manager API
+
+A production-ready NestJS backend for managing users, projects, and tasks with JWT authentication, layered architecture, and SQLite persistence. Built as part of a postgraduate backend project, it emphasizes clean separation of concerns and scalable use cases.
+
+<p align="left">
+  <img src="https://img.shields.io/badge/NestJS-11.x-E0234E" alt="NestJS" />
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/TypeORM-0.3.x-FF5D00" alt="TypeORM" />
+  <img src="https://img.shields.io/badge/SQLite-3-003B57" alt="SQLite" />
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## ✨ Highlights
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- **JWT authentication** with protected routes and public endpoints
+- **Projects and tasks** management with user scoping
+- **Clean architecture** layers: domain, gateways, infrastructure
+- **Validation-ready** DTOs using `class-validator`
+- **SQLite persistence** via TypeORM
+- **Test-ready** structure with unit and e2e setup
 
-## Description
+## 🧱 Architecture Overview
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Domain**: Entities, interfaces, use cases
+- **Gateways**: HTTP controllers and guards
+- **Infrastructure**: Auth and database implementations
 
-## Project setup
+This separation keeps business rules independent from frameworks and I/O concerns.
+
+## 🧩 Tech Stack
+
+- NestJS 11
+- TypeScript 5
+- TypeORM + SQLite
+- JWT + Bcrypt
+- Jest + Supertest
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ (recommended)
+- npm
+
+### Installation
 
 ```bash
-$ npm install
+npm install
 ```
 
-## Compile and run the project
+### Run the App
 
 ```bash
 # development
-$ npm run start
+npm run start
 
 # watch mode
-$ npm run start:dev
+npm run start:dev
 
-# production mode
-$ npm run start:prod
+# production (after build)
+npm run build
+npm run start:prod
 ```
 
-## Run tests
+### Tests
 
 ```bash
 # unit tests
-$ npm run test
+npm run test
 
 # e2e tests
-$ npm run test:e2e
+npm run test:e2e
 
-# test coverage
-$ npm run test:cov
+# coverage
+npm run test:cov
 ```
 
-## Deployment
+## 🔐 Authentication
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Use the login endpoint to obtain a JWT token. Protected routes expect:
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+```
+Authorization: Bearer <token>
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+> Note: The JWT secret is currently defined in `src/infrastructure/auth/constants.ts`. Change it before production use.
 
-## Resources
+## 📚 API Endpoints
 
-Check out a few resources that may come in handy when working with NestJS:
+### Auth
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- `POST /auth/login` — login with email and password
 
-## Support
+### Users
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- `POST /users` — create user (public)
+- `GET /users` — list users
+- `GET /users/:id` — get user by id
 
-## Stay in touch
+### Projects
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- `GET /projects` — list user projects
+- `GET /projects/:id` — get project by id
+- `POST /projects` — create project
 
-## License
+### Tasks
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- `GET /tasks` — list user tasks
+- `GET /tasks/:id` — get task by id
+- `POST /tasks` — create task
+
+## 🗄️ Database
+
+The project uses SQLite by default. The database file is located at:
+
+```
+db/sql.sqlite
+```
+
+TypeORM is configured with `synchronize: true` for local development.
+
+## 📁 Project Structure
+
+```
+src/
+  domain/            # entities, interfaces, use cases
+  gateways/          # controllers, guards, DTOs
+  infrastructure/    # auth and database adapters
+```
+
+## 📄 License
+
+UNLICENSED
